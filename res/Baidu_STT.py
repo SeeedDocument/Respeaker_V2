@@ -2,7 +2,6 @@
 # coding:utf-8
 
 import logging
-import mraa
 import time
 import os
 import signal
@@ -18,10 +17,6 @@ API_KEY = ''
 SECRET_KEY = ''
 
 client = AipSpeech(APP_ID, API_KEY, SECRET_KEY)
-
-x = mraa.Gpio(2)
-x.dir(mraa.DIR_OUT)
-
 
 # 读取文件
 def get_file_content(filePath):
@@ -60,10 +55,8 @@ def task(quit_event):
                     print('Recognized %s' % text)
                     if (u'开灯') in text:
                         print('主人马上为你开灯')
-                        x.write(1)
                     if (u'关灯') in text:
                         print('主人马上为你关灯')
-                        x.write(0)
             except Exception as e:
                 print(e.message)
 
